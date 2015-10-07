@@ -7,7 +7,7 @@ from .models import Movie, User_id, Rating
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display =['user_id']
+    list_display =['user_id', 'gender']
 
 
 class MovieAdmin(admin.ModelAdmin):

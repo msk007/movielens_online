@@ -4,23 +4,27 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class User_id (models.Model):
-    user_id=models
-MALE= 'm'
-FEMALE='f
-OTHER='O'
+    user_id=models.self
 
-GENDER_CHOICES =(
-(MALE,'male'),
-(FEMALE, 'female')
-(OTHER,'Other')
+    MALE= 'm'
+    FEMALE='f
+    OTHER='O'
 
+    GENDER_CHOICES =(
+    (MALE,'male'),
+    (FEMALE, 'female')
+    (OTHER,'Other')
 )
+
     gender=models.CharField(max_length=1, choices=)
 
-
+        def__str__(self):
+            return self.user_id
 class Movie(models.Model):
     movie_id=models.CharField(max_length=50)
 
+    def__str__(self):
+        return self.movie_id
 
 
 class Rating(models.Model):
