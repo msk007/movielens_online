@@ -21,9 +21,12 @@ GENDER_CHOICES =(
 class Movie(models.Model):
     movie_id=models.CharField(max_length=50)
 
+
+
 class Rating(models.Model):
     user_id = models.ForeignKey(User_id)
     movie = models.ForeignKey(Movie)
-    rating = models.FloatField()
+    rating = models.PositiveSmallIntegerField()
 
     def__str__(self):
+        return 'user {} gives {} a {}'.format(self.user, self.movie, self.rating)
