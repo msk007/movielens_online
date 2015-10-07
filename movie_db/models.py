@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class User_id (models.Model):
-    user_id=models.CharField(max_length=10)
+    user=models.CharField(max_length=10)
 
     MALE= 'm'
     FEMALE='f'
@@ -36,5 +36,13 @@ class Rating(models.Model):
     movie = models.ForeignKey(Movie)
     rating = models.PositiveSmallIntegerField()
 
-    #def__str__(self):
-        #return 'user {} gives {} a {}'.format(self.user, self.movie, self.rating)
+    def __str__(self):
+        return 'user {} gives {} a {}'.format(self.user, self.movie, self.rating)
+
+    users=[]
+
+    with open('ml-1m/movies.dat', encoding='Windows-1252') as f:)
+        reader = csv.DictReader(f,
+                                fieldnames= 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
+                                delimiter='::')
+        )
