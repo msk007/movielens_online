@@ -5,6 +5,17 @@ from django.contrib.auth.models import User
 # Create your models here.
 class User_id (models.Model):
     user_id=models
+MALE= 'm'
+FEMALE='f
+OTHER='O'
+
+GENDER_CHOICES =(
+(MALE,'male'),
+(FEMALE, 'female')
+(OTHER,'Other')
+
+)
+    gender=models.CharField(max_length=1, choices=)
 
 
 class Movie(models.Model):
