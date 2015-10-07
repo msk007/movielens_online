@@ -19,7 +19,7 @@ GENDER_CHOICES =(
 
 
 class Movie(models.Model):
-    movie_id=models.CharField(max_length=200)
+    movie_id=models.CharField(max_length=50)
 
 class Rating(models.Model):
     user_id = models.ForeignKey(User_id)
