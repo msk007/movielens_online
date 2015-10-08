@@ -53,10 +53,10 @@ class Rating(models.Model):
 
     users=[]
 
-        with open('ml-1m/movies.dat') as f:
-            reader = csv.DictReader([f,
-                                fieldnames= 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
-                                delimiter='\t')
+    with open('ml-1m/movies.dat') as f:
+            reader = csv.DictReader([[line.replace('::', '\t') for line in f],
+                                    fieldnames = 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
+                                    delimiter='\t')
 
             for row in reader:
                 user= {
