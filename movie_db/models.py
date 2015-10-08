@@ -13,10 +13,13 @@ class User_id (models.Model):
     GENDER_CHOICES =(
     (MALE,'male'),
     (FEMALE, 'female'),
-    (OTHER,'other')
+    (OTHER,'other'),
+    (X, 'Did not answer'),
 )
 
-    gender=models.CharField(max_length=1, choices= ())
+    gender=models.CharField(max_length=1, choices= GENDER_CHOICES)
+    zipcode = models.Charfield(max_length=5)
+    age = models.PositiveIntegerField()
 
     #def__str__(self):
         #return self.user_id()
@@ -41,8 +44,14 @@ class Rating(models.Model):
 
     users=[]
 
-    with open('ml-1m/movies.dat', encoding='Windows-1252') as f:)
-        reader = csv.DictReader(f,
+    def load_ml_data():
+        import csv
+        import json
+
+        with open('ml-1m/movies.dat', encoding='Windows-1252') as f:)
+            reader = csv.DictReader(f,
                                 fieldnames= 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
                                 delimiter='::')
-        )
+
+            for row in reader:
+                user= {}
