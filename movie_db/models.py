@@ -9,6 +9,7 @@ class User_id (models.Model):
     MALE= 'm'
     FEMALE='f'
     OTHER='O'
+    X='Did not answer'
 
     GENDER_CHOICES =(
     (MALE,'male'),
@@ -18,7 +19,7 @@ class User_id (models.Model):
 )
 
     gender=models.CharField(max_length=1, choices= GENDER_CHOICES)
-    zipcode = models.Charfield(max_length=5)
+    zipcode = models.CharField(max_length=5)
     age = models.PositiveIntegerField()
 
     #def__str__(self):
@@ -48,7 +49,7 @@ class Rating(models.Model):
         import csv
         import json
 
-        with open('ml-1m/movies.dat', encoding='Windows-1252') as f:)
+        with open('ml-1m/movies.dat', encoding='Windows-1252') as f:
             reader = csv.DictReader(f,
                                 fieldnames= 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
                                 delimiter='::')
