@@ -54,7 +54,8 @@ def load_ml_data():
 
     users=[]
 
-    with open('ml-1m/movies.dat') as f:
+    with open('ml-1m/movies.dat', encoding='Windows-1252') as f:
+
 
         reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                 fieldnames ='UserID::Gender::Age::Occupation::Zip-code'.split('::'),
@@ -62,7 +63,7 @@ def load_ml_data():
 
         for row in reader:
             user= {
-                'fields':{
+            user['fields']:{
                     'gender': row['Gender'],
                     'age': row['Age'],
                     'occupation':row['Occupation'],
@@ -71,6 +72,8 @@ def load_ml_data():
                 'model': 'movie_db.Rating',
                 'pk': int(row['User_id']),
             }
+
+
             users.append(user)
 
         with open('users.json', 'w') as f:
