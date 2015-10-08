@@ -4,7 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 class User_id (models.Model):
-    user=models.CharField(max_length=10)
+    user_id=models.CharField(max_length=10)
 
     MALE= 'm'
     FEMALE='f'
@@ -16,23 +16,24 @@ class User_id (models.Model):
     (FEMALE, 'female'),
     (OTHER,'other'),
     (X, 'Did not answer'),
-)
+    )
 
     gender=models.CharField(max_length=1, choices= GENDER_CHOICES)
     zipcode = models.CharField(max_length=5)
     age = models.PositiveIntegerField()
 
-    #def__str__(self):
-        #return self.user_id()
+    def __str__(self):
+        return str(self.id)
 
 
 class Movie(models.Model):
-    movie_id=models.CharField(max_length=50)
+    movie_title=models.CharField(max_length=50)
 
+    def average_ratings(self):
+        return self. rating_set.aggregate(models.Avg('stars'))['stars__avg']
 
-
-    #def__str__(self):
-        #return self.movie_id
+    def __str__(self):
+        return self.movie_title
 
 
 class Rating(models.Model):
@@ -43,16 +44,34 @@ class Rating(models.Model):
     def __str__(self):
         return 'user {} gives {} a {}'.format(self.user, self.movie, self.rating)
 
-    users=[]
+
 
     def load_ml_data():
         import csv
         import json
+        import re
 
-        with open('ml-1m/movies.dat', encoding='Windows-1252') as f:
-            reader = csv.DictReader(f,
+    users=[]
+
+        with open('ml-1m/movies.dat') as f:
+            reader = csv.DictReader([f,
                                 fieldnames= 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
-                                delimiter='::')
+                                delimiter='\t')
 
             for row in reader:
-                user= {}
+                user= {
+                    'fields':{
+                        'gender': row['Gender'],
+                        'age': row['Age'],
+                        'occupation':row['Occupation'],
+                        'zipcode': row['zip-code']
+                    },
+                    'model': 'movie_db.Rating'
+                    'pk': int(row['User_id']),
+            }
+                users.append(user)
+
+        with open('users.json', 'w') as f:
+            f.write(json.dump(users))
+
+        print(json.dumps(users, sort_keys=True, indent=4, separators=(',', ': ')))

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import migrations, models
-
+from django.utils import timezone
 from django.utils.timezone import utc
 
 
@@ -21,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user_id',
             name='age',
-            field=models.PositiveIntegerField(default=datetime.datetime(2015, 10, 8, 0, 50, 41, 975879, tzinfo=utc)),
+            field=models.PositiveIntegerField(2015, 10, 8, 0, 50, 41, 975879, tzinfo=utc),
             preserve_default=False,
         ),
         migrations.AddField(
