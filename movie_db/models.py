@@ -21,6 +21,7 @@ class User_id (models.Model):
     gender=models.CharField(max_length=1, choices= GENDER_CHOICES)
     zipcode = models.CharField(max_length=5)
     age = models.PositiveIntegerField()
+    occupation= models.CharField(max_length=40)
 
     def __str__(self):
         return str(self.id)
@@ -46,30 +47,31 @@ class Rating(models.Model):
 
 
 
-    def load_ml_data():
-        import csv
-        import json
-        import re
+def load_ml_data():
+    import csv
+    import json
+    import re
 
     users=[]
 
     with open('ml-1m/movies.dat') as f:
-            reader = csv.DictReader([[line.replace('::', '\t') for line in f],
-                                    fieldnames = 'UserID::Gender::Age::Occupation::Zip-code'.split('::'),
-                                    delimiter='\t')
 
-            for row in reader:
-                user= {
-                    'fields':{
-                        'gender': row['Gender'],
-                        'age': row['Age'],
-                        'occupation':row['Occupation'],
-                        'zipcode': row['zip-code']
-                    },
-                    'model': 'movie_db.Rating'
-                    'pk': int(row['User_id']),
+        reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                fieldnames ='UserID::Gender::Age::Occupation::Zip-code'.split('::'),
+                                delimiter='\t')
+
+        for row in reader:
+            user= {
+                'fields':{
+                    'gender': row['Gender'],
+                    'age': row['Age'],
+                    'occupation':row['Occupation'],
+                    'zipcode': row['zip-code']
+                },
+                'model': 'movie_db.Rating',
+                'pk': int(row['User_id']),
             }
-                users.append(user)
+            users.append(user)
 
         with open('users.json', 'w') as f:
             f.write(json.dump(users))
