@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Movie, User_id, Rating
-
+from django.utils import timezone
 
 
 
