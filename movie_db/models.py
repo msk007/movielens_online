@@ -28,13 +28,13 @@ class User_id (models.Model):
 
 
 class Movie(models.Model):
-    movie_title=models.CharField(max_length=50)
+    movie_id=models.CharField(max_length=50)
 
     def average_ratings(self):
         return self. rating_set.aggregate(models.Avg('stars'))['stars__avg']
 
     def __str__(self):
-        return self.movie_title
+        return self.movie_id
 
 
 class Rating(models.Model):
