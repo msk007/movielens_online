@@ -19,9 +19,9 @@ class User_id (models.Model):
     )
 
     gender=models.CharField(max_length=1, choices= GENDER_CHOICES)
-    zipcode = models.CharField(max_length=5)
-    age = models.PositiveIntegerField()
-    occupation= models.CharField(max_length=40)
+    zipcode = models.CharField(max_length=5, null=True)
+    age = models.PositiveIntegerField=56
+    occupation= models.CharField(max_length=40, null=True)
 
     def __str__(self):
         return str(self.id)

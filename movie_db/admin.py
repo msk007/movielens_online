@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display =['movie_title']
+    list_display =['movie_id']
 
 
 class RatingAdmin(admin.ModelAdmin):
