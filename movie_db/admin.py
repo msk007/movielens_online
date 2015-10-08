@@ -7,7 +7,7 @@ from django.utils import timezone
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display =['user', 'gender']
+    list_display =['User_id', 'gender']
 
 
 class MovieAdmin(admin.ModelAdmin):
@@ -15,7 +15,7 @@ class MovieAdmin(admin.ModelAdmin):
 
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display =['user_id','movie_id','rating']
+    list_display =['User_id','movie_id','rating']
 
 # Register your models here.
 admin.site.register(Movie, MovieAdmin)
